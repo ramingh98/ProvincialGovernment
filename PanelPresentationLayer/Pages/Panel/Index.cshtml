@@ -1,0 +1,76 @@
+﻿@page
+@model PanelPresentationLayer.Pages.Panel.IndexModel
+@{
+}
+@{
+    ViewData["Title"] = "داشبورد";
+    ViewData["selected"] = "Dashboard";
+}
+
+
+<div class="row">
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="card-title mb-0">
+                    <h5 class="m-0 me-2">تعداد کل پرونده ها</h5>
+                </div>
+                <small class="text-center">1763</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="card-title mb-0">
+                    <h5 class="m-0 me-2">تعداد پرونده های جاری</h5>
+                </div>
+                <small class="text-center">1000</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="card-title mb-0">
+                    <h5 class="m-0 me-2">تعداد پرونده های راکد</h5>
+                </div>
+                <small class="text-center">763</small>
+            </div>
+        </div>
+    </div>
+    <!-- Website Analytics -->
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <h5 class="card-header">وضعیت پرونده ها</h5>
+            <div class="card-body">
+                <canvas id="doughnutChart" class="chartjs mb-4" data-height="350" height="266" width="266" style="display: block; box-sizing: border-box;"></canvas>
+                <ul class="doughnut-legend d-flex justify-content-around ps-0 mb-2 pt-1">
+                    <li class="ct-series-1 d-flex flex-column">
+                        <h5 class="mb-0 fw-bold">جاری</h5>
+                        <span class="badge badge-dot my-2 cursor-pointer rounded-pill" style="background-color: rgb(40, 208, 148);"></span>
+                        <div class="text-muted">40 %</div>
+                    </li>
+                    <li class="ct-series-2 d-flex flex-column">
+                        <h5 class="mb-0 fw-bold">راکد</h5>
+                        <span class="badge badge-dot my-2 cursor-pointer rounded-pill" style="background-color: rgb(253, 172, 52);"></span>
+                        <div class="text-muted">60 %</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-12 mb-4">
+        <div class="card">
+            <div class="card-header header-elements">
+                <h5 class="card-title mb-0">تعداد ورود و خروج</h5>
+                <div class="card-action-element ms-auto py-0">
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="barChart" class="chartjs" data-height="400" height="440" style="display: block; box-sizing: border-box; height: 400px; width: 399.091px;" width="439"></canvas>
+            </div>
+        </div>
+    </div>
+    <!--/ Website Analytics -->
+</div>

@@ -1,0 +1,10 @@
+﻿@using PanelViewModel.IdentitiesViewModels;
+@model ExcelViewModel
+<form data-ajax="true" asp-page="Index" asp-page-handler="AddExcel" enctype="multipart/form-data">
+    <input asp-for="File" type="file" class="form-control" aria-controls="DataTables_Table_0">
+    <span asp-validation-for="File"></span>
+    <div class="col-12 text-center mt-4">
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">ثبت</button>
+        <button onclick="closeModal()" type="reset" class="btn btn-label-secondary btn-reset waves-effect" data-bs-dismiss="modal" aria-label="Close">انصراف</button>
+    </div>
+</form>

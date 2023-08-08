@@ -1,0 +1,13 @@
+﻿@using PanelViewModel.BaseDefinitionsViewModels;
+@model EmploymentTypeViewModel
+<form class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework" method="post" data-ajax="true" asp-page="Index" asp-page-handler="AddEmploymentType" enctype="multipart/form-data">
+    <div class="col-12 col-md-12 fv-plugins-icon-container">
+        <label class="form-label">عنوان</label>
+        <input type="text" asp-for="Title" class="form-control" autocomplete="off">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">ثبت</button>
+        <button onclick="closeModal()" type="reset" class="btn btn-label-secondary btn-reset waves-effect" data-bs-dismiss="modal" aria-label="Close">انصراف</button>
+    </div>
+</form>

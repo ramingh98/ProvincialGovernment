@@ -1,0 +1,45 @@
+﻿@page
+@using Common.DateUtil;
+@model PanelPresentationLayer.Pages.Panel.BaseDefinitions.ServiceLocation.IndexModel
+@{
+    ViewData["title"] = "پنل کاربری | عناوین محل های خدمت";
+    ViewData["selected"] = "ServiceLocation";
+    ViewData["nav"] = "عناوین محل های خدمت";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <button onclick="OpenModal('@Url.Page("Index","RenderAddPage")','bigModal','افزودن عنوان جدید')" type="button" class="btn rounded-pill btn-success waves-effect waves-light">افزودن آیتم</button>
+    <div class="card mt-2">
+        <h5 class="card-header">انواع محل های خدمت</h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>شناسه</th>
+                        <th>عنوان</th>
+                        <th>تاریخ ثبت</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.ServiceLocationViewModel)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td>@item.RegDate.ToPersianDate()</td>
+                            <td>
+                                <a href="javascript:;" class="text-body" onclick="OpenModal('@Url.Page("Index","RenderEditPage", new { id = item.Id })','bigModal','ویرایش عنوان')">
+                                    <i class="ti ti-edit ti-sm me-2"></i>
+                                </a>
+                                <a href="javascript:;" class="text-body delete-record" onclick="deleteItem('@Url.Page("Index","DeleteType",new {id = item.Id})','آیا از حذف مطمئنید؟')">
+                                    <i class="ti ti-trash ti-sm mx-2"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

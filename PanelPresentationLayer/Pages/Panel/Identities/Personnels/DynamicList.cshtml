@@ -1,0 +1,116 @@
+﻿@using PanelViewModel.IdentitiesViewModels
+@model List<PersonnelViewModel>
+@{
+    var previous = ViewBag.PageID - 1;
+    var next = ViewBag.PageID + 1;
+
+}
+
+<table class="datatables-users table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" >
+    <thead>
+        <tr style="padding : 0 !important">
+            <th class="text-center" rowspan="1" colspan="1" aria-label="">#</th>
+            <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">شماره پرونده</th>
+            <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">نام و نام خانوادگی</th>
+            <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width:50px">کد ملی</th>
+            <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">وضعیت پرونده</th>
+            <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">محل خدمت</th>
+            <th class="text-center" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1">عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="even ">
+                <td class="text-center">@item.Id</td>
+                <td class="text-center">@item.CaseNumber</td>
+                <td class="text-center">@item.Name @item.Family</td>
+                <td class="text-center">@item.NationalCode</td>
+                <td class="text-center">
+                    @item.CaseStatusName
+                </td>
+                <td class="text-center">@item.ServiceLocationName</td>
+                <td class="text-center">
+                    <a title="ویرایش پرسنل" class="text-body" onclick="OpenModal('/Panel/Identities/Personnels?id=@item.Id&handler=RenderEditPage','bigModal','ویرایش پرسنل')">
+                        <i class="ti ti-edit ti-sm me-2"></i>
+                    </a>
+                    <a title="تغییر وضعیت پرونده" onclick="deleteItem('/Panel/Identities/Personnels?id=@item.Id&handler=ToggleStatus','آیا از تغییر وضعیت پرونده مطمئنید؟')" class="text-body delete-record">
+                        <i class="ti ti-settings ti-sm mx-2"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+<div class="row mx-2">
+    <div class="col-sm-12 col-md-6">
+       @* <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 50 entries</div>
+        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of @Model.Count entries</div>*@
+    </div>
+    <div class="col-sm-12 col-md-6">
+        @if (ViewBag.PageCount > 1)
+        {
+            <div class="bottom">
+                <div class="dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination p-1">
+                        @if (previous == 0)
+                        {
+                            <li class="paginate_button page-item previous disabled">
+                                <a href="#" aria-controls="DataTables_Table_0" onclick="changePage(@previous)" data-dt-idx="@previous" tabindex="0" class="page-link">قبلی</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="paginate_button page-item previous">
+                                <a href="#" aria-controls="DataTables_Table_0" onclick="changePage(@previous)" data-dt-idx="@previous" tabindex="0" class="page-link">قبلی</a>
+                            </li>
+                        }
+                        @if (ViewBag.StartPage > 1)
+                        {
+                            <li class="paginate_button page-item ">
+                                <a onclick="changePage(1)" href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                            </li>
+                        }
+
+                        @for (var item = ViewBag.StartPage; item <= ViewBag.EndPage; item++)
+                        {
+                            if (item == ViewBag.PageID)
+                            {
+                                <li class="paginate_button page-item active">
+                                    <a aria-controls="DataTables_Table_0" data-dt-idx="@item" tabindex="0" class="page-link">@item</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="paginate_button page-item ">
+                                    <a onclick="changePage(@item)" aria-controls="DataTables_Table_0" data-dt-idx="@item" tabindex="0" class="page-link">@item</a>
+                                </li>
+                            }
+                        }
+                        @if (ViewBag.EndPage < ViewBag.PageCount)
+                        {
+                            <li class="paginate_button page-item ">
+                                <a href="#" onclick="changePage(@ViewBag.PageCount)" class="page-link">@ViewBag.PageCount</a>
+                            </li>
+                        }
+                        @if (next <= ViewBag.PageCount)
+                        {
+                            <li class="paginate_button page-item next">
+                                <a href="#" aria-controls="DataTables_Table_0" onclick="changePage(@next)" data-dt-idx="@next" tabindex="0" class="page-link">بعدی</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="paginate_button page-item next disabled">
+                                <a href="#" aria-controls="DataTables_Table_0" onclick="changePage(@next)" data-dt-idx="@next" tabindex="0" class="page-link">بعدی</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>

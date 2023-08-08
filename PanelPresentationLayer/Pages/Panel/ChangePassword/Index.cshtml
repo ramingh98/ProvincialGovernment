@@ -1,0 +1,48 @@
+﻿@page
+@model PanelPresentationLayer.Pages.Panel.ChangePassword.IndexModel
+@{
+    ViewData["selected"] = "Password";
+    ViewData["nav"] = "تغییر کلمه عبور";
+}
+
+<h4 class="fw-bold py-3 mb-4">تغییر کلمه عبور</h4>
+<div class="card mb-4">
+    <form class="card-body" method="post">
+        <div class="row g-3">
+            <div class="col-md-12">
+                <div class="form-password-toggle">
+                    <label class="form-label" for="multicol-password">کلمه عبور فعلی</label>
+                    <div class="input-group input-group-merge">
+                        <input type="password" asp-for="OldPassword" class="form-control">
+                        <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="ti ti-eye-off"></i></span>
+                    </div>
+                    <span class="text-danger" asp-validation-for="OldPassword"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-password-toggle">
+                    <label class="form-label" for="multicol-password">کلمه عبور جدید</label>
+                    <div class="input-group input-group-merge">
+                        <input type="password" asp-for="Password" class="form-control">
+                        <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="ti ti-eye-off"></i></span>
+                    </div>
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-password-toggle">
+                    <label class="form-label" for="multicol-password">تکرار کلمه عبور</label>
+                    <div class="input-group input-group-merge">
+                        <input type="password" asp-for="ConfirmPassword" class="form-control">
+                        <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="ti ti-eye-off"></i></span>
+                    </div>
+                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                </div>
+            </div>
+        </div>
+        <div class="pt-4">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">ثیت</button>
+            <button type="reset" class="btn btn-label-secondary waves-effect">انصراف</button>
+        </div>
+    </form>
+</div>

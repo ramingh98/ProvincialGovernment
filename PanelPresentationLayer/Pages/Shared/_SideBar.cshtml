@@ -1,0 +1,63 @@
+﻿@{
+    var selected = ViewData["selected"]?.ToString();
+}
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a href="/" class="app-brand-link">
+            <span class="app-brand-logo demo">
+                <img  src="/img/logo.png" style="width:120%">
+            </span>
+            <span class="app-brand-text demo menu-text fw-bold" style="font-size:17px">استانداری آذربایجان شرقی</span>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboards -->
+        <li class="menu-item @(selected == "Dashboard" ? "active" : null)">
+            <a href="/" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>داشبورد</div>
+            </a>
+        </li>
+
+        <!-- Layouts -->
+        <li class="menu-item @(selected == "EmploymentTypes" ? "active" : null)">
+            <a href="/Panel/BaseDefinitions/EmploymentTypes" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-color-swatch"></i>
+                <div>انواع استخدام</div>
+            </a>
+        </li>
+        <li class="menu-item @(selected == "StudyField" ? "active" : null)">
+            <a href="/Panel/BaseDefinitions/StudyField" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-id"></i>
+                <div>انواع رشته تحصیلی</div>
+            </a>
+        </li>
+        <li class="menu-item @(selected == "PositionType" ? "active" : null)">
+            <a href="/Panel/BaseDefinitions/PositionType" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-components"></i>
+                <div>انواع پست</div>
+            </a>
+        </li>
+        <li class="menu-item @(selected == "ServiceLocation" ? "active" : null)">
+            <a href="/Panel/BaseDefinitions/ServiceLocation" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-layout-kanban"></i>
+                <div>انواع محل های خدمت</div>
+            </a>
+        </li>
+        <li class="menu-item @(selected == "Personnels" ? "active" : null)">
+            <a href="/Panel/Identities/Personnels" class="menu-link ">
+                <i class="menu-icon tf-icons ti ti-users"></i>
+                <div>لیست پرسنل</div>
+            </a>
+        </li>
+        <li class="menu-item @(selected == "Password" ? "active" : null)">
+            <a href="/Panel/ChangePassword" class="menu-link ">
+                <i class="menu-icon tf-icons ti ti-key"></i>
+                <div>تغییر کلمه عبور</div>
+            </a>
+        </li>
+    </ul>
+</aside>

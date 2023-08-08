@@ -1,0 +1,14 @@
+﻿{
+  "connectionString": "Data Source=5.61.29.234;Initial Catalog=ProvincialGovernment_DB;User Id=Punas_User; Password=abc_123",
+  "appFilePath": "C:\\TICGFiles",
+  "smsApiKey": "792F4C714844426835785246702B4774374C746D714942456271385045787254645354306A5851777143383D",
+  "smsSenderLine": "100002283",
+  "panelUrl": "",
+  "applicationUrl": "http://localhost:60149",
+  "jwtTokenKey": "740E1071-D6C3-41DD-8167-E45EEC2A752E",
+  "cdnUrl": "http://localhost:9393",
+  "frontEndUrl": "http://localhost:1337",
+  "timeZone": "Iran Standard Time",
+  "calendarType": 1,
+  "companyName": "سیستم مدیریت کارمندان"
+}

@@ -1,0 +1,151 @@
+﻿@using Common.Enums;
+@using PanelBusinessLogicLayer.BusinessServices.BaseDefinitionsServices;
+@model PanelViewModel.IdentitiesViewModels.PersonnelViewModel
+@{
+    var positionTypeService = new PositionTypeService();
+    var locationService = new ServiceLocationService();
+    var educationDegreeService = new EducationDegreeService();
+    var studyFieldService = new StudyFieldService();
+    var employmentTypeService = new EmploymentTypeService();
+    var positions = await positionTypeService.ReadAsync();
+    var locations = await locationService.ReadAsync();
+    var educationDegrees = await educationDegreeService.ReadAsync();
+    var studyFields = await studyFieldService.ReadAsync();
+    var employmentTypes = await employmentTypeService.ReadAsync();
+}
+<form class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework" method="post" data-ajax="true" asp-page="Index" asp-page-handler="EditPersonnel" enctype="multipart/form-data">
+    <input hidden asp-for="Id" />
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">نام</label>
+        <input type="text" asp-for="Name" class="form-control" autocomplete="off">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">نام خانوادگی</label>
+        <input type="text" asp-for="Family" class="form-control" autocomplete="off">
+        <span asp-validation-for="Family" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">نام پدر</label>
+        <input type="text" asp-for="FatherName" class="form-control" autocomplete="off">
+        <span asp-validation-for="FatherName" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">کد ملی</label>
+        <input type="text" asp-for="NationalCode" class="form-control" autocomplete="off">
+        <span asp-validation-for="NationalCode" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">شماره شناسنامه</label>
+        <input type="text" asp-for="BirthCertificateNumber" class="form-control" autocomplete="off">
+        <span asp-validation-for="BirthCertificateNumber" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">تاریخ تولد</label>
+        <input type="text" asp-for="BirthDate" class="form-control" autocomplete="off" placeholder="__/__/____">
+        <span asp-validation-for="BirthDate" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">محل صدور</label>
+        <input type="text" asp-for="PlaceOfBirth" class="form-control" autocomplete="off">
+        <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 fv-plugins-icon-container">
+        <label class="form-label">کد رایانه</label>
+        <input type="text" asp-for="ComputerCode" class="form-control" autocomplete="off">
+        <span asp-validation-for="ComputerCode" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="form-label">نوع استخدام</label>
+        <div class="position-relative">
+            <div class="position-relative">
+                <select asp-for="TypeOfEmploymentId" class="select form-select " data-allow-clear="true" aria-hidden="true" data-select2-id="modalAddressCountry">
+                    <option value="" hidden disabled selected>انتخاب کنید</option>
+                    @foreach (var item in employmentTypes)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="TypeOfEmploymentId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="form-label">مدرک تحصیلی</label>
+        <div class="position-relative">
+            <div class="position-relative">
+                <select asp-for="EducationDegreeId" class="select form-select " data-allow-clear="true" aria-hidden="true" data-select2-id="modalAddressCountry">
+                    <option value="" hidden disabled selected>انتخاب کنید</option>
+                    @foreach (var item in educationDegrees)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="EducationDegreeId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="form-label">رشته تحصیلی</label>
+        <div class="position-relative">
+            <div class="position-relative">
+                <select asp-for="StudyFieldId" class="select form-select " data-allow-clear="true" aria-hidden="true" data-select2-id="modalAddressCountry">
+                    <option value="" hidden disabled selected>انتخاب کنید</option>
+                    @foreach (var item in studyFields)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="StudyFieldId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="form-label">عنوان آخرین پست</label>
+        <div class="position-relative">
+            <div class="position-relative">
+                <select asp-for="LastPositionId" class="select form-select " data-allow-clear="true" aria-hidden="true" data-select2-id="modalAddressCountry">
+                    <option value="" hidden disabled selected>انتخاب کنید</option>
+                    @foreach (var item in positions.Value)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="LastPositionId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="form-label">محل خدمت فعلی</label>
+        <div class="position-relative">
+            <div class="position-relative">
+                <select asp-for="ServiceLocationId" class="select form-select " data-allow-clear="true" aria-hidden="true" data-select2-id="modalAddressCountry">
+                    <option value="" hidden disabled selected>انتخاب کنید</option>
+                    @foreach (var item in locations)
+                    {
+                        <option value="@item.Id">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="ServiceLocationId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <label class="form-label">وضعیت تاهل</label>
+        <div class="position-relative">
+            <div class="position-relative">
+                <select asp-for="MaritalStatusId" class="select form-select " data-allow-clear="true" aria-hidden="true" data-select2-id="modalAddressCountry">
+                    <option value="" hidden disabled selected>انتخاب کنید</option>
+                    <option value="1">متاهل</option>
+                    <option value="2">مجرد</option>
+                    <option value="3">مطله</option>
+                </select>
+                <span asp-validation-for="MaritalStatusId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">ثبت</button>
+        <button onclick="closeModal()" type="reset" class="btn btn-label-secondary btn-reset waves-effect" data-bs-dismiss="modal" aria-label="Close">انصراف</button>
+    </div>
+</form>
